@@ -1,2 +1,2 @@
 # I'M just too Lazy
-writing some scripts to automate the boring stuff....
+writing some scripts to do some boring stuff, automatically :)
