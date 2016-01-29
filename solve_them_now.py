@@ -14,7 +14,7 @@ def fetch_page_as_string(url = None):
         This function takes in a parameter url and return a string representing
         the Http Response, obtained at the given URL.
 
-        NOTE:- Functions is bottleneck to the script performance, consider cahching
+        NOTE:- Functions is bottleneck to the script performance, consider caching
                 the response if the update is not too frequent.
 
         Paramters:-
