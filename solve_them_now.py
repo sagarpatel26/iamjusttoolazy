@@ -35,7 +35,7 @@ def fetch_page_as_string(url = None):
 
 
 
-def get_problem_codeforces(tag = 'not_specified'):
+def get_problem_codeforces(tag = None, problem_index = None):
     '''
         Currently function returns, an url to a randomly chosen problm from
         codeforces problemset.
@@ -75,7 +75,7 @@ def get_problem_codeforces(tag = 'not_specified'):
 
     codeforces_request_url = CODEFORCES_URL
     # if the tag is defined and the query string for the tag.
-    if tag != 'not_specified':
+    if tag != None:
         codeforces_request_url = codeforces_request_url + '?tags=' + tag
 
     # TODO: think of caching the response page, for increasing the performance.
@@ -89,10 +89,20 @@ def get_problem_codeforces(tag = 'not_specified'):
     if (len(all_problems)==0):
         raise Exception('No Such Tag!!')
 
+    # randomly choosing any problem.
     to_solve = random.choice(all_problems)
     to_solve_url = CODEFORCES_PROBLEM + str(to_solve['contestId']) + '/' + to_solve['index']
+
+    # Repeating till not found the problem with given problem_index
+    while (problem_index!=None and to_solve['index'] != problem_index):
+        to_solve = random.choice(all_problems)
+        to_solve_url = CODEFORCES_PROBLEM + str(to_solve['contestId']) + '/' + to_solve['index']
+
+    # try another approach for efficiency, before that branch out!!!
+
+
     return to_solve_url
 
-
 if __name__ == '__main__':
-    webbrowser.open(get_problem_codeforces('math'))
+    webbrowser.open(get_problem_codeforces('math', 'C'))
+    webbrowser.open(get_problem_codeforces('dp', 'D'))
